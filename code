@@ -1,0 +1,26 @@
+functions
+{
+    writeEarly
+    {
+        type            writeObjects;
+        libs            ("libutilityFunctionObjects.so");
+
+        writeControl    runTime;
+        writeInterval   0.001;
+
+        timeStart       0;
+        timeEnd         0.01;
+    }
+
+    writeLate
+    {
+        type            writeObjects;
+        libs            ("libutilityFunctionObjects.so");
+
+        writeControl    runTime;
+        writeInterval   0.005;
+
+        timeStart       0.01;
+        timeEnd         1;
+    }
+}
