@@ -1,0 +1,143 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale 0.001;
+
+
+
+cvx 0.0;
+cvy 0.0;
+cvz 0.0;
+height 120;
+ri 1.0;
+ro 50.0;
+
+x 8;
+y 8;
+z 240; 
+
+
+h #calc "$height+$cvz";
+
+pxi #calc "$cvx+$ri";
+nxi #calc "$cvx-$ri";
+pyi #calc "$cvy+$ri";
+nyi #calc "$cvy-$ri";
+
+pxo #calc "$cvx+$ro"; 
+nxo #calc "$cvx-$ro";
+pyo #calc "$cvy+$ro";
+nyo #calc "$cvy-$ro";
+
+ci1 #calc "$cvx + 0.70710678*$ri";
+si1 #calc "$cvy + 0.70710678*$ri";
+ci2 #calc "$cvx - 0.70710678*$ri";
+si2 #calc "$cvy + 0.70710678*$ri";
+ci3 #calc "$cvx - 0.70710678*$ri";
+si3 #calc "$cvy - 0.70710678*$ri";
+ci4 #calc "$cvx + 0.70710678*$ri";
+si4 #calc "$cvy - 0.70710678*$ri";
+
+co1 #calc "$cvx + 0.70710678*$ro";
+so1 #calc "$cvy + 0.70710678*$ro";
+co2 #calc "$cvx - 0.70710678*$ro";
+so2 #calc "$cvy + 0.70710678*$ro";
+co3 #calc "$cvx - 0.70710678*$ro";
+so3 #calc "$cvy - 0.70710678*$ro";
+co4 #calc "$cvx + 0.70710678*$ro";
+so4 #calc "$cvy - 0.70710678*$ro";
+
+
+vertices
+(
+    ($pxi $cvy $cvz) 
+    ($cvx $pyi $cvz) 
+    ($nxi $cvy $cvz) 
+    ($cvx $nyi $cvz) 
+    
+    ($pxi $cvy $h) 
+    ($cvx $pyi $h) 
+    ($nxi $cvy $h) 
+    ($cvx $nyi $h) 
+    
+    ($pxo $cvy $cvz) 
+    ($cvx $pyo $cvz) 
+    ($nxo $cvy $cvz) 
+    ($cvx $nyo $cvz)
+    
+    ($pxo $cvy $h) 
+    ($cvx $pyo $h) 
+    ($nxo $cvy $h) 
+    ($cvx $nyo $h)
+    
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) ($x $y $z) simpleGrading (1 1 1)
+    hex (0 8 9 1 4 12 13 5) (50 $y $z) simpleGrading (7 1 1)
+    hex (1 9 10 2 5 13 14 6) (50 $y $z) simpleGrading (7 1 1)
+    hex (2 10 11 3 6 14 15 7) (50 $y $z) simpleGrading (7 1 1)
+    hex (3 11 8 0 7 15 12 4) (50 $y $z) simpleGrading (7 1 1)
+); 
+
+
+edges
+(
+arc 0 1 ($ci1 $si1 $cvz)
+arc 1 2 ($ci2 $si2 $cvz)
+arc 2 3 ($ci3 $si3 $cvz)
+arc 3 0 ($ci4 $si4 $cvz)
+
+arc 4 5 ($ci1 $si1 $h)
+arc 5 6 ($ci2 $si2 $h)
+arc 6 7 ($ci3 $si3 $h)
+arc 7 4 ($ci4 $si4 $h)
+
+arc 8 9 ($co1 $so1 $cvz)
+arc 9 10 ($co2 $so2 $cvz)
+arc 10 11 ($co3 $so3 $cvz)
+arc 11 8 ($co4 $so4 $cvz)
+
+arc 12 13 ($co1 $so1 $h)
+arc 13 14 ($co2 $so2 $h)
+arc 14 15 ($co3 $so3 $h)
+arc 15 12 ($co4 $so4 $h)
+);
+
+defaultPatch
+{
+    name solidWalls;
+    type wall;
+}
+
+boundary
+(
+    atmosphere
+    {
+      type patch;
+      faces
+      (
+        (4 5 6 7)
+        (4 12 13 5)
+        (5 13 14 6)
+        (6 14 15 7)
+        (7 15 12 4)
+      );
+    }
+);
+
+
+// ************************************************************************* //
