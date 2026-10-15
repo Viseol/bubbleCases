@@ -1,3 +1,7 @@
+cd ~/KR02
+
+python3 worker.py --name VM1-Worker --duration 60
+
 mkdir -p ~/KR02
 cd ~/KR02
 nano worker.py
