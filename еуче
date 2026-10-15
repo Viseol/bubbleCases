@@ -1,0 +1,69 @@
+mkdir -p ~/KR02
+cd ~/KR02
+nano worker.py
+
+
+import argparse
+import hashlib
+import os
+import time
+
+def run_worker(duration: float, name: str) -> None:
+    """
+    Выполняет вычислительную нагрузку в течение заданного
+    времени и измеряет количество выполненных операций.
+    """
+    data = b"KR02 CPU benchmark"
+    operations = 0
+
+    start = time.perf_counter()
+    start_cpu = time.process_time()
+
+    while time.perf_counter() - start < duration:
+        data = hashlib.sha256(data).digest()
+        operations += 1
+
+    elapsed = time.perf_counter() - start
+    cpu_time = time.process_time() - start_cpu
+    speed = operations / elapsed
+
+    print(f"Worker: {name}")
+    print(f"PID: {os.getpid()}")
+    print(f"CPU affinity: {sorted(os.sched_getaffinity(0))}")
+    print(f"Elapsed: {elapsed:.3f} s")
+    print(f"CPU time: {cpu_time:.3f} s")
+    print(f"Operations: {operations}")
+    print(f"Speed: {speed:.0f} operations/s")
+    print(f"CPU utilization: {100 * cpu_time / elapsed:.1f}%")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--name", default="Worker")
+    parser.add_argument("--duration", type=float, default=30.0)
+    args = parser.parse_args()
+
+    if args.duration <= 0:
+        parser.error("--duration must be positive")
+
+    run_worker(args.duration, args.name)
+
+
+python3 worker.py --name Test --duration 5
+
+
+cd ~/KR02
+
+taskset -c 0 python3 worker.py \
+    --name Worker-1 --duration 30
+
+
+taskset -c 0 python3 worker.py \
+    --name Worker-1 --duration 30 > worker1.txt &
+
+taskset -c 0 python3 worker.py \
+    --name Worker-2 --duration 30 > worker2.txt &
+
+wait
+
+cat worker1.txt
+cat worker2.txt
