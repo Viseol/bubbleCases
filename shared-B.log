@@ -1,0 +1,31 @@
+START host=Viseol pid=6122 instance=B
+REQUIREMENT mode=BETA input=10 expected_result=30
+CONFIG_PATH /opt/course/settings.ini
+2026-11-07T17:31:32 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:35 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:39 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:42 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:45 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:48 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:51 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:54 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:31:57 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:00 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:03 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:06 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:09 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:12 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:15 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:18 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:21 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:24 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:27 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:30 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:33 instance=B required=BETA actual=ALPHA operation=x2 input=10 result=20 expected_result=30 requirement=NOT_MET
+2026-11-07T17:32:36 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:39 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:42 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:45 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:48 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:51 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
+2026-11-07T17:32:54 instance=B required=BETA actual=BETA operation=x3 input=10 result=30 expected_result=30 requirement=MET
